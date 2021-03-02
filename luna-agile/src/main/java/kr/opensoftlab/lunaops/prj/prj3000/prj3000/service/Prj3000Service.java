@@ -25,6 +25,10 @@ public interface Prj3000Service {
 	
 	@SuppressWarnings("rawtypes")
 	void deletePrj3000MenuInfo(Map paramMap) throws Exception;
+
+	
+	@SuppressWarnings("rawtypes")
+	int deletePrj3000DocList(Map paramMap) throws Exception;
 	
 	
 	@SuppressWarnings("rawtypes")
@@ -45,4 +49,16 @@ public interface Prj3000Service {
 	
 	@SuppressWarnings("rawtypes")
 	Map selectPrj3000WizardMenuInfo(Map paramMap) throws Exception;
+
+	
+	int selectPrj3000DocNextOrd(Map<String, String> paramMap) throws Exception;
+
+	
+	String insertPrj3000DocInfo(Map<String, String> paramMap) throws Exception;
+
+	
+	void updatePrj3000DocInfo(Map<String, String> paramMap) throws Exception;
+
+	
+	void deletePrj3000DocInfo(Map<String, String> paramMap) throws Exception;
 }

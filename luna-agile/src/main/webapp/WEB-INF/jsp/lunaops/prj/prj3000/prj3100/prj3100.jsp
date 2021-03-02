@@ -4,242 +4,6 @@
 <jsp:include page="/WEB-INF/jsp/lunaops/top/top.jsp" />
 <jsp:include page="/WEB-INF/jsp/lunaops/top/aside.jsp" />
 		
-<style>
-	/*flex 우측 정렬*/
-	.osl-margin-left--auto{
-		margin-left: auto;
-	}	
-	/*flex 좌측 정렬*/
-	.osl-margin-right--auto{
-		margin-right: auto;
-	}
-	/*첨부파일  - 첨부 파일 전체 영역*/
-	.osl-show-uppy{
-		width: 100%; 
-		height:370px; 
-		border-radius:5px;
-		background-color:#f7f8fa; 
-		border: 1px solid #ebedf2;
-	}
-	/*첨부파일  - 파일 개수*/
-	.osl-uppy-title{
-		height:50px; 
-		line-height:50px; 
-		padding: 0 15px; 
-		color:#aeb2b7; 
-		font-size:1rem; 
-		font-weight:500; 
-		border-bottom:1px solid #eaeaea; 
-		background-color:#fafafa; 
-		text-align:center;
-	}
-	/*첨부파일  - 파일 전체 영역*/
-	.osl-uppy-body{
-		padding: 10px 0; 
-		overflow-y: auto; 
-		height:318px;
-	}
-	/*첨부파일  - 각 파일*/
-	.osl-uppy-file{
-		margin:5px 15px; 
-		width: calc(25% - 30px); 
-		height:190px; 
-		float:left;
-	}
-	/*첨부파일  - 썸네일 전체 사이즈*/
-	.osl-osl-uppy-file-sumnail{
-		width:100%; 
-		height:120px; 
-		background-color:rgb(131, 137, 153); 
-		border-radius:3px;
-		position:relative; 
-		overflow: hidden;
-		cursor: pointer;
-		position: relative;
-	}
-	/*첨부파일  - 썸네일 hover*/
-	.osl-osl-uppy-file-sumnail:hover .osl-uppy-DashboardItem-action--download{
-		display:block;
-	}
-	/*첨부파일  - 썸네일 hover시 다운로드 모양*/
-	.osl-uppy-DashboardItem-action--download{
-		position: absolute;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
-		background-color: #0006;
-		text-align:center;
-		color: white;
-		font-size: 4rem;
-		line-height: 120px;
-		display: none;
-	}
-	/*첨부파일  - 썸네일 뒤쪽 컬러 배경*/
-	.osl-osl-uppy-file-sumnail-bg{
-		width:58px;
-		height: 76px;
-		background-color:#fff; 
-		position:absolute; 
-		top:50%; 
-		left:50%; 
-		transform: translate(-50%, -50%); 
-		-webkit-transform: translate(-50%, -50%); 
-		border-radius:3px;
-	}
-	/*첨부파일  - 파일명 파일 용량 영역*/
-	.osl-uppy-file-info-group{
-		padding-right:5px;
-		padding-top: 9px;
-	}
-	/*첨부파일  - 파일명*/
-	.osl-uppy-file-name{
-		font-size:12px; 
-		line-height: 1.3; 
-		font-weight: 500; 
-		margin-bottom: 4px; 
-		word-break: break-all; 
-		color:#333;
-	}
-	/*첨부파일  - 파일용량*/
-	.osl-uppy-file-volume{
-		font-size:11px; 
-		line-height: 1.3; 
-		font-weight: 400; 
-		color: #757575
-	}
-	/*첨부파일  - icon svg path사이즈*/
-	.osl-uppy-iconFile{
-		width:38px; 
-		height: 38px; 
-		position:absolute; 
-		top:50%; 
-		left:50%; 
-		transform: translate(-50%, -50%); 
-		-webkit-transform: translate(-50%, -50%); 
-		border-radius:3px;	
-	}
-	/*첨부파일  - image 배경색*/
-	.osl-uppy-image-bg{
-		background-color: #686DE0;
-	}
-	/*첨부파일  - audio 배경색*/
-	.osl-uppy-audio-bg{
-		background-color: #049BCF;
-	}
-	/*첨부파일  - video 배경색*/
-	.osl-uppy-video-bg{
-		background-color: #19AF67;
-	}
-	/*첨부파일  - pdf 배경색*/
-	.osl-uppy-pdf-bg{
-		background-color: #E2514A;
-	}
-	/*첨부파일  - archive 배경색*/
-	.osl-uppy-archive-bg{
-		background-color: #00C469;
-	}
-	/*첨부파일  - file 배경색*/
-	.osl-uppy-file-bg{
-		background-color: #A7AFB7;
-	}
-	/*첨부파일  - text 배경색*/
-	.osl-uppy-text-bg{
-		background-color: #5A5E69;
-	}
-	/*첨부파일  - 실제 이미지*/
-	.osl-osl-uppy-file-sumnail>img{
-		width:100%;
-		height: 100%;
-	}
-	 
-	/*osl-uppy-file--fullsize 한줄 라인으로 전체 변환*/
-	/*첨부파일  - 각 파일*/
-	.osl-uppy-file--fullsize.osl-uppy-file{
-		padding:10px 0 10px 10px;
-		width: 100%;
-		height: 70px;
-		border-bottom: 1px solid #eaeaea;
-		margin: 0;
-	}
-	/*osl-uppy-file--fullsize 한줄 라인일때 맨마지막 박스 border값 제거*/
-	.osl-uppy-file--fullsize:last-child{
-		border-bottom:0;
-	}
-	/*첨부파일  - 썸네일 전체 사이즈*/
-	.osl-uppy-file--fullsize .osl-osl-uppy-file-sumnail{
-		width: 50px;
-		height: 50px;
-		float: left;
-	}
-	
-	/*첨부파일  - 썸네일 hover시 다운로드 모양*/
-	.osl-uppy-file--fullsize .osl-uppy-DashboardItem-action--download{
-		font-size: 3rem;
-		line-height: 52px;
-	}
-	/*첨부파일  - 썸네일 뒤쪽 컬러 배경*/
-	.osl-uppy-file--fullsize .osl-osl-uppy-file-sumnail-bg{
-		width: 28.62px;
-		height: 37.5px;
-	}
-	
-	/*첨부파일  - icon svg path사이즈*/
-	.osl-uppy-file--fullsize .osl-uppy-iconFile{
-		width: 25px;
-		height: 25px;
-	}
-	/*첨부파일  - 파일명 파일 용량 영역*/
-	.osl-uppy-file--fullsize .osl-uppy-file-info-group{
-		float: left;
-		padding-left: 12px;
-		padding-right: 8px;
-	}
-	.osl-uppy__btn{
-		line-height: 50px;
-		font-size: 1.5rem;
-		opacity: 0.6;
-		cursor: pointer;
-	}
-	.osl-uppy__left{
-		float: left;
-	}
-	.osl-uppy__left-btn:before{
-		content: "\f359";
-	}
-	.osl-uppy__right{
-		float: right;
-	}
-	.osl-uppy__right-btn:before{
-		content: "\f35a";
-	}
-	.osl-uppy__left-btn:before,.osl-uppy__right-btn:before{
-		font-family:'Font Awesome 5 Free';
-		color: #1cac81;
-		font-weight: 900;
-	}
-	.osl-uppy__btn:hover{
-		opacity:1;
-	}
-	.chosen{
-		border: 1px solid #1cac81 !important;
-		box-sizing: border-box;
-	}
-	@media (max-width: 767px) {
-		.osl-mobile-margin-t-20{
-			margin-top: 20px;		
-		}
-		.osl-uppy__left-btn:before{
-			content: "\f35b";
-		}
-		.osl-uppy__right-btn:before{
-			content: "\f358";
-		}
-		.osl-uppy__left{
-			float: right;
-		}
-	}
-</style>
 <div class="kt-portlet kt-portlet--mobile">
 	<div class="kt-portlet__head kt-portlet__head--lg">
 		<div class="kt-portlet__head-label">
@@ -263,14 +27,14 @@
 							<!-- begin:: 산출물 메뉴 목록 button -->
 							<div class="kt-portlet__head-toolbar">
 								<div class="kt-portlet__head-wrapper">
-									<button type="button" class="btn btn-outline-brand btn-bold btn-font-sm kt-margin-l-5 kt-margin-r-5 btn-elevate btn-elevate-air" data-datatable-id="stm4000MstCodeTable" data-datatable-action="select" title="" data-toggle="kt-tooltip" data-skin="brand" data-placement="bottom" data-auth-button="select" tabindex="1" data-original-title="산출물 메뉴 목록 조회">
+									<button type="button" class="btn btn-outline-brand btn-bold btn-font-sm kt-margin-l-5 kt-margin-r-5 btn-elevate btn-elevate-air osl-tree-action" data-tree-id="prj3100DocTree" data-tree-action="select" title="" data-toggle="kt-tooltip" data-skin="brand" data-placement="bottom" data-auth-button="select" tabindex="1" data-original-title="산출물 메뉴 목록 조회">
 										<i class="fa fa-list"></i><span>조회</span>
 									</button>
 								</div>
 								<div class="kt-portlet__head-group">
 									<div class="kt-portlet__head-group">
-										<a href="#" class="btn btn-sm btn-icon btn-clean btn-icon-md osl-tree-action" data-toggle="kt-tooltip" title="전체 펼치기" data-tree-id="stm6000DeptTree" data-tree-action="allNodeOpen"><i class="fa fa-plus"></i></a>
-										<a href="#" class="btn btn-sm btn-icon btn-clean btn-icon-md osl-tree-action" data-toggle="kt-tooltip" title="전체 접기" data-tree-id="stm6000DeptTree" data-tree-action="allNodeClose"><i class="fa fa-minus"></i></a>
+										<a href="#" class="btn btn-sm btn-icon btn-clean btn-icon-md osl-tree-action" data-toggle="kt-tooltip" title="전체 펼치기" data-tree-id="prj3100DocTree" data-tree-action="allNodeOpen"><i class="fa fa-plus"></i></a>
+										<a href="#" class="btn btn-sm btn-icon btn-clean btn-icon-md osl-tree-action" data-toggle="kt-tooltip" title="전체 접기" data-tree-id="prj3100DocTree" data-tree-action="allNodeClose"><i class="fa fa-minus"></i></a>
 										<a href="#" data-ktportlet-tool="toggle" class="btn btn-sm btn-icon btn-clean btn-icon-md"><i class="la la-angle-down"></i></a>
 									</div>
 								</div>
@@ -293,13 +57,13 @@
 						<div class="kt-portlet__body">
 							<div class="row">
 								<div class="col-12">
-									<div class="osl-tree-search" data-tree-id="stm6000DeptTree"></div>
+									<div class="osl-tree-search" data-tree-id="prj3100DocTree"></div>
 								</div>
 							</div>
 							<div class="kt-separator kt-separator--space-sm kt-separator--border-solid"></div>
 							<div class="row">
 								<div class="col-12">
-									<div class="osl-tree kt-scroll" data-height="410" id="stm6000DeptTree"></div>
+									<div class="osl-tree kt-scroll" data-height="410" id="prj3100DocTree"></div>
 								</div>
 							</div>
 						</div>
@@ -321,7 +85,7 @@
 							<!-- begin:: 산출물 정보 button -->
 							<div class="kt-portlet__head-toolbar">
 								<div class="kt-portlet__head-wrapper">
-									<button type="button" class="btn btn-outline-brand btn-bold btn-font-sm kt-margin-l-5 kt-margin-r-5 btn-elevate btn-elevate-air" data-datatable-id="" data-datatable-action="select" title="" data-toggle="kt-tooltip" data-skin="brand" data-placement="bottom" data-auth-button="select" tabindex="1" data-original-title="산출물 정보 조회">
+									<button type="button" class="btn btn-outline-brand btn-bold btn-font-sm kt-margin-l-5 kt-margin-r-5 btn-elevate btn-elevate-air osl-tree-action" data-tree-id="prj3100DocTree" data-tree-action="selectDocInfo" title="" data-toggle="kt-tooltip" data-skin="brand" data-placement="bottom" data-auth-button="selectDocInfo" tabindex="1" data-original-title="산출물 정보 조회">
 										<i class="fa fa-list"></i><span>조회</span>
 									</button>
 									<button type="button" class="btn btn-outline-brand btn-bold btn-font-sm kt-margin-l-5 kt-margin-r-5 btn-elevate btn-elevate-air" data-datatable-id="" data-datatable-action="update" title="" data-toggle="kt-tooltip" data-skin="brand" data-placement="bottom" data-auth-button="update" tabindex="3" data-original-title="산출물 양식 다운로드">
@@ -333,56 +97,58 @@
 						</div>
 						
 						<div class="kt-portlet__body">
-							<div class="row">
-								<div class="col-6">
-									<div class="form-group">
-										<label>산출물 ID</label>
-										<input type="" class="form-control" readonly="readonly">
+							<form class="kt-form" id="frPrj3100">
+								<div class="row">
+									<div class="col-6">
+										<div class="form-group">
+											<label><i class="fa fa-align-left kt-margin-r-5"></i><span data-lang-cd="prj3100.label.docId">산출물 ID</span></label>
+											<input type="text" class="form-control" placeholder="산출물 ID" name="docId" id="docId" readonly="readonly">
+										</div>
+									</div>
+									<div class="col-6">
+										<div class="form-group">
+											<label><i class="fa fa-edit kt-margin-r-5"></i><span data-lang-cd="prj3100.label.docNm">산출물 명</span></label>
+											<input type="text" class="form-control" placeholder="산출물 명" name="docNm" id="docNm" readonly="readonly">
+										</div>
 									</div>
 								</div>
-								<div class="col-6">
-									<div class="form-group">
-										<label>산출물 명</label>
-										<input type="" class="form-control" readonly="readonly">
+								<div class="row">
+									<div class="col-6">
+										<div class="form-group">
+											<label><i class="fa fa-check-square kt-margin-r-5"></i><span data-lang-cd="prj3100.label.docUseCd">사용유무</span></label>
+											<input type="text" class="form-control" placeholder="사용유무"  name="useNm" id="useNm" readonly="readonly">
+										</div>
+									</div>
+									<div class="col-6">
+										<div class="form-group">
+											<label><i class="fa fa-list-ol kt-margin-r-5"></i><span data-lang-cd="prj3100.label.docOrd">순번</span></label>
+											<input type="text" class="form-control" placeholder="순번" name="ord" id="ord" readonly="readonly">
+										</div>
 									</div>
 								</div>
-							</div>
-							<div class="row">
-								<div class="col-6">
-									<div class="form-group">
-										<label>사용 여부</label>
-										<input type="" class="form-control" readonly="readonly">
+								<div class="row">
+									<div class="col-6">
+										<div class="form-group">
+											<label><i class="fas fa-calendar-alt kt-margin-r-5"></i><span data-lang-cd="prj3100.label.docEdDtm">산출물 마감일</span></label>
+											<input type="text" class="form-control" placeholder="산출물 마감일" name="docEdDtm" id="docEdDtm" readonly="readonly">
+										</div>
+									</div>
+									<div class="col-6">
+										<div class="form-group">
+											<label><i class="fa fa-project-diagram kt-margin-r-5"></i><span data-lang-cd="prj3100.label.docEdDtm">산출물 구분</span></label>
+											<input type="" class="form-control" placeholder="산출물 구분" readonly="readonly">
+										</div>
 									</div>
 								</div>
-								<div class="col-6">
-									<div class="form-group">
-										<label>순번</label>
-										<input type="" class="form-control" readonly="readonly">
+								<div class="row">
+									<div class="col-12">
+										<div class="form-group">
+											<label><i class="fa fa-edit kt-margin-r-5"></i><span data-lang-cd="prj3100.label.docEtc">비고</span></label>
+											<div class="form-control h-100 osl-min-height--12rem" id="docDesc"></div>
+										</div>
 									</div>
 								</div>
-							</div>
-							<div class="row">
-								<div class="col-6">
-									<div class="form-group">
-										<label>산출물 마감일</label>
-										<input type="" class="form-control" readonly="readonly">
-									</div>
-								</div>
-								<div class="col-6">
-									<div class="form-group">
-										<label>산출물 구분</label>
-										<input type="" class="form-control" readonly="readonly">
-									</div>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-12">
-									<div class="form-group">
-										<label>비고</label>
-										<textarea class="form-control" id="" rows="3" readonly="readonly"></textarea>
-									</div>
-								</div>
-							</div>
+							</form>
 						</div>
 					</div>
 				</div>
@@ -435,8 +201,8 @@
 											<div class="osl-uppy-file osl-uppy-file--fullsize">
 												<div class="osl-uppy__btn osl-uppy__arrow-btn osl-uppy__right-btn osl-uppy__right kt-margin-r-10">
 												</div>
-												<div class="osl-osl-uppy-file-sumnail osl-uppy-pdf-bg">
-													<div class="osl-osl-uppy-file-sumnail-bg"></div>
+												<div class="osl-uppy-file-sumnail osl-uppy-pdf-bg">
+													<div class="osl-uppy-file-sumnail-bg"></div>
 													<span class="osl-uppy-iconFile">
 														<svg aria-hidden="true" focusable="false" class="UppyIcon" width="38" height="38" viewBox="0 0 25 25">
 															<g fill="#E2514A" fill-rule="nonzero">
@@ -444,7 +210,7 @@
 															</g>
 														</svg>
 													</span>
-													<div class="osl-uppy-DashboardItem-action--download" aria-label="파일 다운로드">
+													<div class="osl-uppy-list-dashboardItem-action--download" aria-label="파일 다운로드">
 														<i class="fas fa-arrow-circle-down"></i>
 													</div>
 												</div>
@@ -460,8 +226,8 @@
 											<div class="osl-uppy-file osl-uppy-file--fullsize">
 												<div class="osl-uppy__btn osl-uppy__arrow-btn osl-uppy__right-btn osl-uppy__right kt-margin-r-10">
 												</div>
-												<div class="osl-osl-uppy-file-sumnail osl-uppy-archive-bg">
-													<div class="osl-osl-uppy-file-sumnail-bg"></div>
+												<div class="osl-uppy-file-sumnail osl-uppy-archive-bg">
+													<div class="osl-uppy-file-sumnail-bg"></div>
 													<span class="osl-uppy-iconFile">
 														<svg aria-hidden="true" focusable="false" class="UppyIcon" width="38" height="38" viewBox="0 0 25 25">
 															<g fill="#00C469" fill-rule="nonzero">
@@ -469,7 +235,7 @@
 															</g>
 														</svg>
 													</span>
-													<div class="osl-uppy-DashboardItem-action--download" aria-label="파일 다운로드">
+													<div class="osl-uppy-list-dashboardItem-action--download" aria-label="파일 다운로드">
 														<i class="fas fa-arrow-circle-down"></i>
 													</div>
 												</div>
@@ -485,8 +251,8 @@
 											<div class="osl-uppy-file osl-uppy-file--fullsize">
 												<div class="osl-uppy__btn osl-uppy__arrow-btn osl-uppy__right-btn osl-uppy__right kt-margin-r-10">
 												</div>
-												<div class="osl-osl-uppy-file-sumnail osl-uppy-file-bg">
-													<div class="osl-osl-uppy-file-sumnail-bg"></div>
+												<div class="osl-uppy-file-sumnail osl-uppy-file-bg">
+													<div class="osl-uppy-file-sumnail-bg"></div>
 													<span class="osl-uppy-iconFile">
 														<svg aria-hidden="true" focusable="false" class="UppyIcon" width="38" height="38" viewBox="0 0 25 25">
 															<g fill="#A7AFB7" fill-rule="nonzero">
@@ -495,7 +261,7 @@
 															</g>
 														</svg>
 													</span>
-													<div class="osl-uppy-DashboardItem-action--download" aria-label="파일 다운로드">
+													<div class="osl-uppy-list-dashboardItem-action--download" aria-label="파일 다운로드">
 														<i class="fas fa-arrow-circle-down"></i>
 													</div>
 												</div>
@@ -511,8 +277,8 @@
 											<div class="osl-uppy-file osl-uppy-file--fullsize">
 												<div class="osl-uppy__btn osl-uppy__arrow-btn osl-uppy__right-btn osl-uppy__right kt-margin-r-10">
 												</div>
-												<div class="osl-osl-uppy-file-sumnail osl-uppy-text-bg">
-													<div class="osl-osl-uppy-file-sumnail-bg"></div>
+												<div class="osl-uppy-file-sumnail osl-uppy-text-bg">
+													<div class="osl-uppy-file-sumnail-bg"></div>
 													<span class="osl-uppy-iconFile">
 														<svg aria-hidden="true" focusable="false" class="UppyIcon" width="38" height="38" viewBox="0 0 25 25">
 															<g fill="#5A5E69" fill-rule="nonzero">
@@ -520,7 +286,7 @@
 															</g>
 														</svg>
 													</span>
-													<div class="osl-uppy-DashboardItem-action--download" aria-label="파일 다운로드">
+													<div class="osl-uppy-list-dashboardItem-action--download" aria-label="파일 다운로드">
 														<i class="fas fa-arrow-circle-down"></i>
 													</div>
 												</div>
@@ -536,9 +302,9 @@
 											<div class="osl-uppy-file osl-uppy-file--fullsize">
 												<div class="osl-uppy__btn osl-uppy__arrow-btn osl-uppy__right-btn osl-uppy__right kt-margin-r-10">
 												</div>
-												<div class="osl-osl-uppy-file-sumnail">
+												<div class="osl-uppy-file-sumnail">
 													<img src="" />
-													<div class="osl-uppy-DashboardItem-action--download" aria-label="파일 다운로드">
+													<div class="osl-uppy-list-dashboardItem-action--download" aria-label="파일 다운로드">
 														<i class="fas fa-arrow-circle-down"></i>
 													</div>
 												</div>
@@ -554,8 +320,8 @@
 											<div class="osl-uppy-file osl-uppy-file--fullsize">
 												<div class="osl-uppy__btn osl-uppy__arrow-btn osl-uppy__right-btn osl-uppy__right kt-margin-r-10">
 												</div>
-												<div class="osl-osl-uppy-file-sumnail osl-uppy-text-bg">
-													<div class="osl-osl-uppy-file-sumnail-bg"></div>
+												<div class="osl-uppy-file-sumnail osl-uppy-text-bg">
+													<div class="osl-uppy-file-sumnail-bg"></div>
 													<span class="osl-uppy-iconFile">
 														<svg aria-hidden="true" focusable="false" class="UppyIcon" width="38" height="38" viewBox="0 0 25 25">
 															<g fill="#5A5E69" fill-rule="nonzero">
@@ -563,7 +329,7 @@
 															</g>
 														</svg>
 													</span>
-													<div class="osl-uppy-DashboardItem-action--download" aria-label="파일 다운로드">
+													<div class="osl-uppy-list-dashboardItem-action--download" aria-label="파일 다운로드">
 														<i class="fas fa-arrow-circle-down"></i>
 													</div>
 												</div>
@@ -579,9 +345,9 @@
 											<div class="osl-uppy-file osl-uppy-file--fullsize">
 												<div class="osl-uppy__btn osl-uppy__arrow-btn osl-uppy__right-btn osl-uppy__right kt-margin-r-10">
 												</div>
-												<div class="osl-osl-uppy-file-sumnail">
+												<div class="osl-uppy-file-sumnail">
 													<img src="" />
-													<div class="osl-uppy-DashboardItem-action--download" aria-label="파일 다운로드">
+													<div class="osl-uppy-list-dashboardItem-action--download" aria-label="파일 다운로드">
 														<i class="fas fa-arrow-circle-down"></i>
 													</div>
 												</div>
@@ -597,8 +363,8 @@
 											<div class="osl-uppy-file osl-uppy-file--fullsize">
 												<div class="osl-uppy__btn osl-uppy__arrow-btn osl-uppy__right-btn osl-uppy__right kt-margin-r-10">
 												</div>
-												<div class="osl-osl-uppy-file-sumnail osl-uppy-text-bg">
-													<div class="osl-osl-uppy-file-sumnail-bg"></div>
+												<div class="osl-uppy-file-sumnail osl-uppy-text-bg">
+													<div class="osl-uppy-file-sumnail-bg"></div>
 													<span class="osl-uppy-iconFile">
 														<svg aria-hidden="true" focusable="false" class="UppyIcon" width="38" height="38" viewBox="0 0 25 25">
 															<g fill="#5A5E69" fill-rule="nonzero">
@@ -606,7 +372,7 @@
 															</g>
 														</svg>
 													</span>
-													<div class="osl-uppy-DashboardItem-action--download" aria-label="파일 다운로드">
+													<div class="osl-uppy-list-dashboardItem-action--download" aria-label="파일 다운로드">
 														<i class="fas fa-arrow-circle-down"></i>
 													</div>
 												</div>
@@ -622,9 +388,9 @@
 											<div class="osl-uppy-file osl-uppy-file--fullsize">
 												<div class="osl-uppy__btn osl-uppy__arrow-btn osl-uppy__right-btn osl-uppy__right kt-margin-r-10">
 												</div>
-												<div class="osl-osl-uppy-file-sumnail">
+												<div class="osl-uppy-file-sumnail">
 													<img src="" />
-													<div class="osl-uppy-DashboardItem-action--download" aria-label="파일 다운로드">
+													<div class="osl-uppy-list-dashboardItem-action--download" aria-label="파일 다운로드">
 														<i class="fas fa-arrow-circle-down"></i>
 													</div>
 												</div>
@@ -665,8 +431,8 @@
 											<div class="osl-uppy-file osl-uppy-file--fullsize">
 												<div class="osl-uppy__btn osl-uppy__arrow-btn osl-uppy__left-btn osl-uppy__left kt-margin-r-10">
 												</div>
-												<div class="osl-osl-uppy-file-sumnail osl-uppy-image-bg">
-													<div class="osl-osl-uppy-file-sumnail-bg"></div>
+												<div class="osl-uppy-file-sumnail osl-uppy-image-bg">
+													<div class="osl-uppy-file-sumnail-bg"></div>
 													<span class="osl-uppy-iconFile">
 														<svg aria-hidden="true" focusable="false" class="UppyIcon" width="38" height="38" viewBox="0 0 25 25">
 															<g fill="#686DE0" fill-rule="nonzero">
@@ -688,8 +454,8 @@
 											<div class="osl-uppy-file osl-uppy-file--fullsize">
 												<div class="osl-uppy__btn osl-uppy__arrow-btn osl-uppy__left-btn osl-uppy__left kt-margin-r-10">
 												</div>
-												<div class="osl-osl-uppy-file-sumnail osl-uppy-audio-bg">
-													<div class="osl-osl-uppy-file-sumnail-bg"></div>
+												<div class="osl-uppy-file-sumnail osl-uppy-audio-bg">
+													<div class="osl-uppy-file-sumnail-bg"></div>
 													<span class="osl-uppy-iconFile">
 														<svg aria-hidden="true" focusable="false" class="UppyIcon" width="38" height="38" viewBox="0 0 25 25">
 															<g fill="#049BCF" fill-rule="nonzero">
@@ -710,8 +476,8 @@
 											<div class="osl-uppy-file osl-uppy-file--fullsize">
 												<div class="osl-uppy__btn osl-uppy__arrow-btn osl-uppy__left-btn osl-uppy__left kt-margin-r-10">
 												</div>
-												<div class="osl-osl-uppy-file-sumnail osl-uppy-video-bg">
-													<div class="osl-osl-uppy-file-sumnail-bg"></div>
+												<div class="osl-uppy-file-sumnail osl-uppy-video-bg">
+													<div class="osl-uppy-file-sumnail-bg"></div>
 													<span class="osl-uppy-iconFile">
 														<svg aria-hidden="true" focusable="false" class="UppyIcon" width="38" height="38" viewBox="0 0 25 25">
 															<g fill="#19AF67" fill-rule="nonzero">
@@ -748,13 +514,13 @@
 							<!-- begin:: 산출물 연결 관리 button -->
 							<div class="kt-portlet__head-toolbar">
 								<div class="kt-portlet__head-wrapper">
-									<button type="button" class="btn btn-outline-brand btn-bold btn-font-sm kt-margin-l-5 kt-margin-r-5 btn-elevate btn-elevate-air" data-datatable-id="" data-datatable-action="select" title="" data-toggle="kt-tooltip" data-skin="brand" data-placement="bottom" data-auth-button="select" tabindex="1" data-original-title="산출물 연결 관리 조회">
+									<button type="button" class="btn btn-outline-brand btn-bold btn-font-sm kt-margin-l-5 kt-margin-r-5 btn-elevate btn-elevate-air" data-datatable-id="prj3200PrjTable" data-datatable-action="select" title="" data-toggle="kt-tooltip" data-skin="brand" data-placement="bottom" data-auth-button="select" tabindex="1" data-original-title="산출물 연결 관리 조회">
 										<i class="fa fa-list"></i><span>조회</span>
 									</button>
-									<button type="button" class="btn btn-outline-brand btn-bold btn-font-sm kt-margin-l-5 kt-margin-r-5 btn-elevate btn-elevate-air" data-datatable-id="" data-datatable-action="update" title="" data-toggle="kt-tooltip" data-skin="brand" data-placement="bottom" data-auth-button="update" tabindex="3" data-original-title="산출물 연결 관리 연결">
+									<button type="button" class="btn btn-outline-brand btn-bold btn-font-sm kt-margin-l-5 kt-margin-r-5 btn-elevate btn-elevate-air" data-datatable-id="prj3200PrjTable" data-datatable-action="insert" title="" data-toggle="kt-tooltip" data-skin="brand" data-placement="bottom" data-auth-button="insert" tabindex="3" data-original-title="산출물 연결 관리 연결">
 										<i class="fa fa-edit"></i><span>연결</span>
 									</button>
-									<button type="button" class="btn btn-outline-brand btn-bold btn-font-sm kt-margin-l-5 kt-margin-r-5 btn-elevate btn-elevate-air" data-datatable-id="" data-datatable-action="delete" title="" data-toggle="kt-tooltip" data-skin="brand" data-placement="bottom" data-auth-button="delete" tabindex="4" data-original-title="산출물 연결 관리 연결 제거">
+									<button type="button" class="btn btn-outline-brand btn-bold btn-font-sm kt-margin-l-5 kt-margin-r-5 btn-elevate btn-elevate-air" data-datatable-id="prj3200PrjTable" data-datatable-action="delete" title="" data-toggle="kt-tooltip" data-skin="brand" data-placement="bottom" data-auth-button="delete" tabindex="4" data-original-title="산출물 연결 관리 연결 제거">
 										<i class="fa fa-trash-alt"></i><span>연결 제거</span>
 									</button>
 								</div>
@@ -763,7 +529,12 @@
 						</div>
 						
 						<div class="kt-portlet__body">
-							
+							<div class="row">
+								<div class="col-lg-6 col-md-6 col-sm-12">
+									<div class="osl-datatable-search" data-datatable-id="prj3200PrjTable"></div>
+								</div>
+							</div>
+							<div class="kt_datatable" id="prj3200PrjTable"></div>
 						</div>
 					</div>
 				</div>
@@ -778,17 +549,27 @@
 "use strict";
 var OSLPrj3000Popup = function () {
 	
-	var formId = "frStm6000";
+	var formId = "frPrj3100";
+	
+	//트리 메뉴
+	var treeObj = '';
+	
+	//산출물 아이디
+	var docId = '';
+	
+	//산출물 연결 정보 데이터 테이블
+	var prj3200PrjTable = "prj3200PrjTable";
 	
 	var documentSetting = function(){
 		
 		// 조직 tree 세팅
-		var treeObj = $.osl.tree.setting("stm6000DeptTree",{
+		// 조직 tree 세팅
+		treeObj = $.osl.tree.setting("prj3100DocTree",{
 			data:{
-				url:"<c:url value='/stm/stm6000/stm6000/selectStm6000DeptListAjax.do'/>",
-				key: "deptId",
-				pKey: "upperDeptId",
-				labelKey: "deptName"
+				url:"<c:url value='/prj/prj3000/prj3000/selectPrj3000DocListAjax.do'/>",
+				key: "docId",
+				pKey: "upperDocId",
+				labelKey: "docNm"
 			},
 			search:{
 				//대소문자 구분
@@ -800,23 +581,194 @@ var OSLPrj3000Popup = function () {
 			},
 			callback:{
 				onclick: function(treeObj,selNode){
-					// 조직 단건 조회
-					selectDeptInfo(selNode.original.deptId);
+					
+					// 산출물 정보 단건 조회
+					selectDocInfo(selNode.original);
 				},
 				init: function(treeObj,data){
-					//console.log(treeObj,data);
+					//console.log(treeObj,data); 
+				}
+			},
+			actionFn : {
+				"selectDocInfo" : function(obj){
+					
+					//선택한 트리 노드 없으면 튕기기
+					var selectNodeIds = treeObj.jstree("get_selected");
+					if($.osl.isNull(selectNodeIds)){
+						$.osl.alert($.osl.lang("prj3100.message.alert.treeSelect"));
+						return false;
+					}
+					
+					// 선택노드
+					var selectNode = treeObj.jstree().get_node(selectNodeIds[0]);
+					var nodeData = selectNode.original;
+					
+					// 산출물 정보 단건 조회
+					selectDocInfo(nodeData);
+				}
+			 
+			}
+			
+		});
+		
+		/*스크롤 세팅*/
+		//조직 트리 스크롤 세팅
+		ktScrollInit("#prj3100DocTree", "410");
+		//확정 파일 스크롤 세팅
+		ktScrollInit("#confirmation-list", "350");
+		//확정 대기 파일 스크롤 세팅
+		ktScrollInit("#wait-confirmation-list", "350");	
+		
+		//데이터 테이블 세팅
+		$.osl.datatable.setting("prj3200PrjTable",{
+			data: {
+				source: {
+					read: {
+						url: "/prj/prj3000/prj3200/selectPrj3200DocConListAjax.do"
+					}
+				},
+			},
+			columns: [
+				{field: 'checkbox', title: '#', textAlign: 'center', width: 20, selector: {class: 'kt-checkbox--solid'}, sortable: false, autoHide: false},
+				{field: 'rn', title: 'No.', textAlign: 'center', width: 25, autoHide: false, sortable: false},
+				{field: 'targetTypeNm', title: '구분', textAlign: 'left', width: 80, search: false},
+				{field: 'targetNm', title: '대상 명', textAlign: 'left', width: 180, search: true, autoHide: false},
+				{field: 'regUsrNm', title: '등록자', textAlign: 'center', width: 80, search: true,
+					template: function (row) {
+						return $.osl.user.usrImgSet(row.regUsrId, row.regUsrNm);
+					},
+					onclick: function(rowData){
+						$.osl.user.usrInfoPopup(rowData.regUsrId);
+					}
+				},
+				{field: 'regDtm', title: '등록일', textAlign: 'center', width: 80, search: true, searchType:"date"}
+				
+			],
+			searchColumns:[
+				{field: 'targetCd', title: '구분', searchOrd: 0, searchType:"select", searchCd:"PRJ00022"}
+			],
+			rows:{
+				clickCheckbox: true
+			},
+			actionBtn:{
+				"title": "연결 제거",
+				"update": false
+			},
+			actionTooltip:{
+				"delete": "연결 제거"
+			},
+			actionFn:{
+				"insert":function(datatableId, type, rowNum){
+					
+					//선택된 산출물 없다면 튕기기
+					var selectNodeIds = treeObj.jstree("get_selected");
+					if($.osl.isNull(selectNodeIds)){
+						$.osl.alert($.osl.lang("prj3100.message.alert.treeSelect"));
+						return false;
+					}
+					
+					// 선택노드
+					var selectNode = treeObj.jstree().get_node(selectNodeIds[0]);
+					var nodeData = selectNode.original;
+					
+					var data = {docId: docId,
+								dtParamPrjId : nodeData.prjId};
+					var options = {
+							idKey: datatableId,
+							modalTitle: $.osl.lang("prj3100.modal.title.insertDocCon"),
+							closeConfirm: false,
+							modalSize: "xl"
+						};
+					
+					$.osl.layerPopupOpen('/prj/prj3000/prj3200/selectPrj3200View.do',data,options);
+				},
+				"delete":function(rowDatas, datatableId, type, rowNum, elem){
+					//AJAX 설정
+					var ajaxObj = new $.osl.ajaxRequestAction(
+							{"url":"<c:url value='/prj/prj3000/prj3200/deletePrj3200DocConInfoAjax.do'/>"}
+							,{deleteDataList: JSON.stringify(rowDatas)});
+					//AJAX 전송 성공 함수
+					ajaxObj.setFnSuccess(function(data){
+						if(data.errorYn == "Y"){
+			   				$.osl.alert(data.message,{type: 'error'});
+			   			}else{
+			   				//삭제 성공
+			   				$.osl.toastr(data.message);
+			   				
+			   				//datatable 조회
+			   				$("button[data-datatable-id="+datatableId+"][data-datatable-action=select]").click();
+			   			}
+					});
+					
+					//AJAX 전송
+					ajaxObj.send();
 				}
 			}
 		});
 		
 		
-		/*스크롤 세팅*/
-		//조직 트리 스크롤 세팅
-		ktScrollInit("#stm6000DeptTree", "410");
-		//확정 파일 스크롤 세팅
-		ktScrollInit("#confirmation-list", "350");
-		//확정 대기 파일 스크롤 세팅
-		ktScrollInit("#wait-confirmation-list", "350");	
+		
+		 /**
+		 * function 명 	: selectDocInfo
+		 * function 설명	: 선택한 산출물의 상세정보를 조회하여 화면에 세팅한다.
+		 * @param docId : 선택한 산출물 ID
+		 */
+		var selectDocInfo = function(nodeData) {
+	    	
+			//AJAX 설정
+			var ajaxObj = new $.osl.ajaxRequestAction(
+					{"url":"<c:url value='/prj/prj3000/prj3000/selectPrj3000DocInfoAjax.do'/>", "async": false}
+					,{"docId": nodeData.docId, "dtParamPrjId" : nodeData.prjId});
+			
+			//AJAX 전송 성공 함수
+			ajaxObj.setFnSuccess(function(data){
+				
+				if(data.errorYn == "Y"){
+					$.osl.alert(data.message,{type: 'error'});
+				}else{
+					$("#"+formId)[0].reset();
+					
+					// 산출물 정보 세팅
+			    	$.osl.setDataFormElem(data.docInfoMap,"frPrj3100", ["docId", "docNm", "useNm", "ord", "docEdDtm", "signUseNm"]);
+				
+			    	var docDesc = data.docInfoMap.docDesc;
+					
+					// 산출물 마감일 없을 경우
+					if($.osl.isNull(data.docInfoMap.docEdDtm)){
+						$("#docEdDtm").val("-");
+					}
+					
+					if(!$.osl.isNull(docDesc)){
+						docDesc =  $.osl.escapeHtml(docDesc);
+				    	// 비고 값 div영역에 세팅
+						$("#docDesc").html(docDesc.replace(/\n/g, '<br/>'));
+					}
+					
+					//입력된 검색값 초기화 (보류)
+					//$("#searchData_prj3200PrjTable").val('');
+					
+					//데이터 테이블 정보 세팅
+					selectDocConInfo();
+				}
+			});
+			
+			//AJAX 전송
+			ajaxObj.send();
+		};
+		
+		
+		/**
+		 * function 명 	: selectDocConInfo
+		 * function 설명	: 선택한 산출물의 연결 정보를 조회하여 화면에 세팅한다.
+		 * @param docId : 선택한 산출물 ID
+		 */
+		var selectDocConInfo = function(){
+			docId = $("#docId").val();
+			console.log(docId);
+			$.osl.datatable.list[prj3200PrjTable].targetDt.setDataSourceParam("docId", docId);
+			$("button[data-datatable-id="+prj3200PrjTable+"][data-datatable-action=select]").click();
+			 
+		}
 		
 		
 		
@@ -923,6 +875,9 @@ var OSLPrj3000Popup = function () {
 	         height: targetHeight
 	    });
 	}
+	
+	
+	
 	
 	return {
         // public functions
